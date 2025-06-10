@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Dashboard</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Real-time Incident Dashboard</h1>
+
+    <div id="map"></div>
+
+    <h2>Active Incidents</h2>
+    <div id="incident-list-container">
+        <ul id="incident-list">
+            </ul>
+        <p id="no-incidents-message">No active incidents.</p>
+    </div>
+
+    <audio id="alertSound" src="/sounds/alert.mp3" preload="auto"></audio>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

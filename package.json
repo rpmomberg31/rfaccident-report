@@ -1,0 +1,30 @@
+{
+  "name": "telegram-incident-bot",
+  "version": "1.0.0",
+  "description": "A Telegram bot with a web interface for incident reporting and tracking, using Node.js and MongoDB.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "telegram-bot",
+    "nodejs",
+    "express",
+    "socket.io",
+    "mongodb",
+    "incident-management"
+  ],
+  "author": "Your Name or Organization",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "mongodb": "^6.17.0",
+    "node-telegram-bot-api": "^0.63.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

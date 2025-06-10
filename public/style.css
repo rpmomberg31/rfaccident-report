@@ -1,0 +1,75 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1, h2 {
+    color: #0056b3;
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+    max-width: 900px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#incident-list-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-width: 900px;
+}
+
+#incident-list {
+    list-style: none;
+    padding: 0;
+}
+
+#incident-list li {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+#incident-list li:last-child {
+    border-bottom: none;
+}
+
+.incident-info {
+    flex-grow: 1;
+}
+
+.incident-info strong {
+    color: #007bff;
+}
+
+.incident-actions button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.incident-actions button:hover {
+    background-color: #c82333;
+}
+
+#no-incidents-message {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+}
