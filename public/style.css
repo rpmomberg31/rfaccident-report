@@ -1,75 +1,245 @@
+/* public/style.css */
+
+/* Global Styles & Typography */
 body {
-    font-family: sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Inter', sans-serif; /* Modern, clean font */
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Light grey background */
+    color: #34495e; /* Dark grey text */
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh; /* Ensure body takes full height */
 }
 
-h1, h2 {
-    color: #0056b3;
-}
-
-#map {
-    height: 500px;
+/* Dashboard Container */
+.dashboard-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    margin: 30px 20px;
+    max-width: 1400px; /* Wider layout */
     width: 100%;
-    max-width: 900px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column; /* Stack header, main */
+    gap: 30px;
 }
 
-#incident-list-container {
-    background-color: #fff;
-    padding: 20px;
+/* Header */
+.dashboard-header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e6ed;
+}
+
+.dashboard-header h1 {
+    color: #2c3e50; /* Darker blue-grey for main title */
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.dashboard-header .tagline {
+    color: #7f8c8d;
+    font-size: 1.1em;
+}
+
+/* Main Content Area (Map + Incidents List) */
+.dashboard-main {
+    display: flex;
+    gap: 30px; /* Space between map and list */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.map-section, .incidents-section {
+    flex: 1; /* Allow sections to grow */
+    min-width: 300px; /* Minimum width before wrapping */
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+}
+
+.map-section {
+    flex-basis: 65%; /* Map takes more space */
+    min-height: 550px; /* Ensure map section has height even if map doesn't load initially */
+    display: flex;
+    flex-direction: column;
+}
+
+.incidents-section {
+    flex-basis: 30%; /* Incidents list takes less space */
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Section Headings */
+h2 {
+    color: #3498db; /* Blue for section titles */
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
+}
+
+/* Map Specific Styles */
+#map {
+    height: 100%; /* Map fills its container */
+    min-height: 400px; /* Minimum height for the map itself */
+    border: 1px solid #c0d9e7; /* Lighter border */
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    max-width: 900px;
+    overflow: hidden; /* Important for Leaflet map to render correctly within rounded corners */
+}
+
+/* Incident List Container */
+#incident-list-container {
+    flex-grow: 1;
+    overflow-y: auto; /* Enable scrolling for long lists */
+    max-height: calc(100vh - 350px); /* Adjust max height for scrolling */
+    padding-right: 10px; /* For scrollbar space */
+    /* Add scrollbar styling for a modern look */
+    scrollbar-width: thin;
+    scrollbar-color: #3498db #f0f2f5;
+}
+
+#incident-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#incident-list-container::-webkit-scrollbar-track {
+    background: #f0f2f5;
+    border-radius: 10px;
+}
+
+#incident-list-container::-webkit-scrollbar-thumb {
+    background-color: #3498db;
+    border-radius: 10px;
+    border: 2px solid #f0f2f5;
 }
 
 #incident-list {
     list-style: none;
     padding: 0;
-}
-
-#incident-list li {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
+    margin: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 15px; /* Space between list items */
+}
+
+/* Individual Incident List Item (Card Style) */
+#incident-list li {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column; /* Stack info and button vertically */
     gap: 10px;
+    border: 1px solid #e0e6ed;
 }
 
-#incident-list li:last-child {
-    border-bottom: none;
-}
-
-.incident-info {
-    flex-grow: 1;
+#incident-list li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .incident-info strong {
-    color: #007bff;
+    color: #2980b9; /* Slightly darker blue for emphasis */
+    font-size: 1.1em;
+    display: block; /* Ensure it takes its own line */
+    margin-bottom: 5px;
 }
 
+.incident-info span {
+    color: #5d6d7e; /* Secondary text color */
+    font-size: 0.95em;
+    display: block; /* Ensure each status/time takes its own line */
+}
+
+/* Status Text */
+.incident-info #status { /* Targeting the status span */
+    font-weight: 600;
+    color: #27ae60; /* Green for active/good status */
+}
+/* You could add more specific status styling if you had different keywords */
+/* .incident-info #status[data-status*="Tow"] { color: #f39c12; } */
+/* .incident-info #status[data-status*="Cleared"] { color: #27ae60; } */
+
+
+/* Incident Actions (Button) */
 .incident-actions button {
-    background-color: #dc3545;
+    background-color: #e74c3c; /* Red for delete button */
     color: white;
     border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
+    padding: 10px 15px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 0.9em;
-    transition: background-color 0.3s ease;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    align-self: flex-end; /* Align button to the right */
 }
 
 .incident-actions button:hover {
-    background-color: #c82333;
+    background-color: #c0392b; /* Darker red on hover */
+    transform: translateY(-1px);
 }
 
+.incident-actions button:active {
+    transform: translateY(0);
+}
+
+/* Message for No Incidents */
 #no-incidents-message {
     text-align: center;
-    color: #777;
-    padding: 20px;
+    color: #7f8c8d;
+    padding: 30px;
+    background-color: #fcfcfc;
+    border-radius: 8px;
+    border: 1px dashed #dcdfe4;
+    font-style: italic;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .dashboard-main {
+        flex-direction: column; /* Stack map and list vertically */
+    }
+
+    .map-section, .incidents-section {
+        flex-basis: auto; /* Take full width */
+    }
+
+    .incidents-section {
+        max-height: 500px; /* Limit height for incident list on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 2.2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    #incident-list li {
+        padding: 15px;
+    }
+
+    .incident-actions button {
+        padding: 8px 12px;
+    }
 }

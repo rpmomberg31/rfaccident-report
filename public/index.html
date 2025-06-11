@@ -3,28 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incident Dashboard</title>
+    <title>Incident Dashboard - Modern</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Real-time Incident Dashboard</h1>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Real-time Incident Dashboard</h1>
+            <p class="tagline">Immediate visual updates for incidents in Pretoria.</p>
+        </header>
 
-    <div id="map"></div>
+        <main class="dashboard-main">
+            <section class="map-section">
+                <h2>Incident Map</h2>
+                <div id="map"></div>
+            </section>
 
-    <h2>Active Incidents</h2>
-    <div id="incident-list-container">
-        <ul id="incident-list">
-            </ul>
-        <p id="no-incidents-message">No active incidents.</p>
+            <section class="incidents-section">
+                <h2>Active Incidents</h2>
+                <div id="incident-list-container">
+                    <ul id="incident-list">
+                        <!-- Incidents will be dynamically added here by script.js -->
+                    </ul>
+                    <p id="no-incidents-message">No active incidents at the moment. Stay safe!</p>
+                </div>
+            </section>
+        </main>
     </div>
 
+    <!-- Hidden audio element for alerts -->
     <audio id="alertSound" src="/sounds/alert.mp3" preload="auto"></audio>
 
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     
+    <!-- Socket.IO Client -->
     <script src="/socket.io/socket.io.js"></script>
     
+    <!-- Your custom frontend JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
