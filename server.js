@@ -1,14 +1,18 @@
-require('dotenv').config(); // Load environment variables from .env
+require('dotenv').config();
 
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const TelegramBot = require('node-telegram-bot-api');
-const { MongoClient, ObjectId } = require('mongodb'); // Import MongoClient and ObjectId
+const { MongoClient, ObjectId } = require('mongodb');
+const cors = require('cors'); // <--- ADD THIS LINE
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+
+app.use(cors()); // <--- ADD THIS LINE (use it before other routes)
+app.use(express.json());
+app.use(express.static('public'));
 
 // --- Configuration ---
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
